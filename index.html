@@ -252,6 +252,34 @@ footer{border-top:1px solid var(--brd2);padding:60px 30px 40px}
 
 .reveal{opacity:0;transform:translateY(46px)}
 
+/* ---- 3D tour button + viewer ---- */
+.tour3d{position:absolute;top:14px;inset-inline-end:14px;z-index:3;border:none;cursor:none;
+  background:linear-gradient(135deg,var(--gold-l),var(--gold));color:#1a1206;font-family:inherit;font-weight:800;
+  font-size:12.5px;padding:8px 13px;border-radius:50px;display:flex;align-items:center;gap:6px;
+  box-shadow:0 8px 22px rgba(0,0,0,.45);transition:.3s var(--ease)}
+.tour3d:hover{transform:scale(1.07);box-shadow:0 10px 28px rgba(201,162,90,.6)}
+.tour3d::after{content:"";position:absolute;inset:-2px;border-radius:50px;border:1px solid var(--gold-l);opacity:.6;animation:pring 2s ease-out infinite}
+@keyframes pring{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.5);opacity:0}}
+.v3d{position:fixed;inset:0;z-index:300;display:none;background:rgba(4,7,12,.9);backdrop-filter:blur(10px)}
+.v3d.open{display:block}
+.v3d-panel{position:absolute;inset:3.5% 4%;border-radius:24px;overflow:hidden;border:1px solid var(--gold);
+  background:linear-gradient(180deg,#0a1622,#070b12);box-shadow:0 50px 130px rgba(0,0,0,.75)}
+.v3d canvas{display:block;width:100%;height:100%;cursor:grab}
+.v3d canvas:active{cursor:grabbing}
+.v3d-bar{position:absolute;top:0;inset-inline:0;display:flex;justify-content:space-between;align-items:center;
+  padding:20px 26px;z-index:3;background:linear-gradient(180deg,rgba(7,11,18,.85),transparent);pointer-events:none}
+.v3d-bar h3{font-size:23px;margin-bottom:2px}
+.v3d-bar .sub{color:var(--gold);font-size:13px}
+.v3d-close{width:46px;height:46px;border-radius:50%;border:1px solid var(--brd);background:rgba(0,0,0,.45);
+  color:#fff;display:grid;place-items:center;cursor:none;pointer-events:auto;font-size:20px;transition:.3s}
+.v3d-close:hover{border-color:var(--gold);color:var(--gold);transform:rotate(90deg)}
+.v3d-tag{position:absolute;bottom:20px;inset-inline-start:26px;z-index:3;background:rgba(8,11,18,.7);
+  border:1px solid var(--brd);border-radius:14px;padding:12px 18px;backdrop-filter:blur(8px)}
+.v3d-tag b{font-family:'El Messiri',serif;color:var(--gold-l);font-size:22px}
+.v3d-tag span{color:var(--muted);font-size:13px;display:block}
+.v3d-hint{position:absolute;bottom:22px;inset-inline-end:26px;z-index:3;color:var(--muted);font-size:13px;letter-spacing:.04em}
+.v3d-load{position:absolute;inset:0;display:grid;place-items:center;color:var(--gold);z-index:2;font-size:15px;letter-spacing:.2em}
+
 /* ---- Responsive ---- */
 @media(max-width:980px){
   .split,.map-box{grid-template-columns:1fr;gap:40px}
@@ -334,7 +362,7 @@ footer{border-top:1px solid var(--brd2);padding:60px 30px 40px}
     <div class="sec-head center reveal">
       <div class="eyebrow" style="justify-content:center"><span data-ar="العروض العقارية" data-en="Featured Listings">العروض العقارية</span></div>
       <h2 data-ar="استكشف عقاراتنا " data-en="Explore our properties ">استكشف عقاراتنا <em data-ar="بتجربة ثلاثية الأبعاد" data-en="in 3D">بتجربة ثلاثية الأبعاد</em></h2>
-      <p data-ar="تنقّل بين أبرز العروض — اسحب أو استخدم الأسهم." data-en="Browse our top listings — drag or use the arrows.">تنقّل بين أبرز العروض — اسحب أو استخدم الأسهم.</p>
+      <p data-ar="العقار الأول مفعّل بتجربة ثلاثية الأبعاد — اضغط «جولة 3D» ودُر حول الفيلا. تنقّل بين باقي العروض بالسحب أو الأسهم." data-en="The first property has a live 3D tour — tap “3D Tour” and orbit the villa. Browse the rest by drag or arrows.">العقار الأول مفعّل بتجربة ثلاثية الأبعاد — اضغط «جولة 3D» ودُر حول الفيلا. تنقّل بين باقي العروض بالسحب أو الأسهم.</p>
     </div>
   </div>
   <div class="flow-stage" id="stage">
@@ -459,7 +487,25 @@ footer{border-top:1px solid var(--brd2);padding:60px 30px 40px}
 
 </div><!-- /main -->
 
+<!-- 3D Villa tour modal -->
+<div class="v3d" id="v3d">
+  <div class="v3d-panel">
+    <div class="v3d-bar">
+      <div>
+        <h3 data-ar="فيلا مودرن فاخرة" data-en="Modern Luxury Villa">فيلا مودرن فاخرة</h3>
+        <div class="sub" data-ar="حي الشاطئ، جدة — جولة ثلاثية الأبعاد" data-en="Al Shatea, Jeddah — 3D Tour">حي الشاطئ، جدة — جولة ثلاثية الأبعاد</div>
+      </div>
+      <button class="v3d-close" id="v3dClose" data-cur aria-label="close">✕</button>
+    </div>
+    <div class="v3d-load" id="v3dLoad" data-ar="جارٍ تجهيز النموذج…" data-en="Preparing model…">جارٍ تجهيز النموذج…</div>
+    <canvas id="v3dCanvas"></canvas>
+    <div class="v3d-tag"><b><small style="font-size:14px">﷼</small> 3,800,000</b><span data-ar="6 غرف · 7 حمام · 520 م²" data-en="6 beds · 7 baths · 520 m²">6 غرف · 7 حمام · 520 م²</span></div>
+    <div class="v3d-hint" data-ar="اسحب للدوران · مرّر للتقريب" data-en="Drag to orbit · scroll to zoom">اسحب للدوران · مرّر للتقريب</div>
+  </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
@@ -486,10 +532,12 @@ ESTATES.forEach((e,i)=>{
        <div>${areaSvg}<span>${e.area} م²</span></div>`
     : `<div>${areaSvg}<span>${e.area} م²</span></div>
        <div>${bedSvg.replace('viewBox','data-x viewBox')}<span class="sv" data-ar="أرض" data-en="Land">أرض</span></div>`;
+  const tourBtn = i===0 ? '<button class="tour3d" data-tour data-cur>🔄 <span data-ar="جولة 3D" data-en="3D Tour">جولة 3D</span></button>' : '';
   const card=document.createElement('div');
   card.className='estate';card.dataset.i=i;
   card.innerHTML=`
     <div class="ph">
+      ${tourBtn}
       <span class="badge" data-ar="${e.badge}" data-en="${e.badge_en}">${e.badge}</span>
       <img data-src="https://images.unsplash.com/photo-${e.img}?auto=format&fit=crop&w=900&q=70" alt="${e.t}">
       <div class="price"><small>﷼</small> ${e.price}</div>
@@ -506,7 +554,7 @@ const dotsWrap=document.getElementById('dots');
 cards.forEach((c,i)=>{const b=document.createElement('button');b.dataset.i=i;dotsWrap.appendChild(b);});
 const dots=[...dotsWrap.children];
 
-let active=2;
+let active=0;
 function renderFlow(){
   cards.forEach((card,i)=>{
     const off=i-active, abs=Math.abs(off);
@@ -532,6 +580,89 @@ const stage=document.getElementById('stage');
 stage.addEventListener('pointerdown',e=>{dx0=e.clientX;});
 addEventListener('pointerup',e=>{if(dx0===null)return;const d=e.clientX-dx0;if(Math.abs(d)>50)go(active+(d>0?-1:1));dx0=null;});
 renderFlow();
+
+/* ============ Interactive 3D villa tour (first property) ============ */
+let vScene,vCam,vRen,vCtrls,vRAF,vReady=false;
+function buildVilla(){
+  const canvas=document.getElementById('v3dCanvas');
+  vRen=new THREE.WebGLRenderer({canvas,antialias:true});
+  vRen.setPixelRatio(Math.min(devicePixelRatio,1.5));
+  vScene=new THREE.Scene();
+  vScene.background=new THREE.Color(0x0a1422);
+  vScene.fog=new THREE.Fog(0x0a1422,28,70);
+  vCam=new THREE.PerspectiveCamera(48,1,0.1,200);
+  vCam.position.set(15,9,17);
+  // lights
+  vScene.add(new THREE.HemisphereLight(0xbcd6ff,0x1a2414,0.75));
+  const sun=new THREE.DirectionalLight(0xfff1d4,1.5);sun.position.set(12,20,10);vScene.add(sun);
+  const warm=new THREE.PointLight(0xffc89a,0.9,50);warm.position.set(-8,5,6);vScene.add(warm);
+  // ground
+  const ground=new THREE.Mesh(new THREE.CircleGeometry(60,56),new THREE.MeshStandardMaterial({color:0x123322,roughness:1}));
+  ground.rotation.x=-Math.PI/2;vScene.add(ground);
+  const plaza=new THREE.Mesh(new THREE.CircleGeometry(13,40),new THREE.MeshStandardMaterial({color:0xb9a883,roughness:.9}));
+  plaza.rotation.x=-Math.PI/2;plaza.position.y=0.02;vScene.add(plaza);
+  // materials
+  const wall=new THREE.MeshStandardMaterial({color:0xf3ede1,roughness:.85,metalness:.04});
+  const wall2=new THREE.MeshStandardMaterial({color:0xe4dccb,roughness:.9});
+  const glass=new THREE.MeshStandardMaterial({color:0x1d2c3c,roughness:.12,metalness:.7,emissive:0x10202e,emissiveIntensity:.6});
+  const dark=new THREE.MeshStandardMaterial({color:0x23262c,roughness:.6,metalness:.3});
+  const gold=new THREE.MeshStandardMaterial({color:0xc9a25a,roughness:.35,metalness:.7});
+  const v=new THREE.Group();
+  function box(w,h,d,x,y,z,m){const b=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);b.position.set(x,y,z);v.add(b);return b;}
+  // ground floor
+  box(11,4,8, 0,2,0, wall);
+  box(11.2,0.3,8.2, 0,4.05,0, dark);        // floor slab line
+  box(7,3,8.05, 1.5,2,0, glass);            // big glass front GF
+  // second floor (offset)
+  box(7,3.6,8, -2,5.9,0, wall);
+  box(7.05,2.2,3.2, -2,5.6,2.6, glass);     // glass band upper
+  box(7.4,0.3,8.4, -2,7.75,0, dark);        // roof slab
+  // cantilever wing
+  box(5,0.35,4.5, 3.5,4.1,2, gold);         // gold canopy
+  box(0.5,4,0.5, 5.6,2,3.8, dark);          // column
+  // entrance steps
+  box(4,0.3,1.4, 2,0.15,4.6, wall2);
+  box(3.2,0.3,1.2, 2,0.42,5, wall2);
+  // parapet trims (gold accents)
+  box(11.2,0.18,0.2, 0,4.15,4.05, gold);
+  box(7.4,0.18,0.2, -2,7.9,4.05, gold);
+  // pool
+  const pool=new THREE.Mesh(new THREE.BoxGeometry(9,0.4,4.4),new THREE.MeshStandardMaterial({color:0x2bb6d6,emissive:0x0c4a5c,emissiveIntensity:.6,roughness:.08,metalness:.5}));
+  pool.position.set(0.5,0.2,8);v.add(pool);
+  box(9.6,0.4,5, 0.5,0.18,8, wall2);        // pool deck rim (behind pool)
+  // palms
+  function palm(x,z){const t=new THREE.Mesh(new THREE.CylinderGeometry(.13,.2,3.4,6),new THREE.MeshStandardMaterial({color:0x6b4f2c,roughness:1}));t.position.set(x,1.7,z);v.add(t);
+    const c=new THREE.MeshStandardMaterial({color:0x2f7d33,roughness:1});
+    for(let k=0;k<5;k++){const l=new THREE.Mesh(new THREE.ConeGeometry(.35,2,5),c);l.position.set(x,3.6,z);l.rotation.z=Math.PI/2.3;l.rotation.y=k*1.25;v.add(l);}}
+  palm(-6.5,6);palm(7.5,6.5);palm(-7,-4);
+  vScene.add(v);
+  // controls
+  vCtrls=new THREE.OrbitControls(vCam,canvas);
+  vCtrls.enableDamping=true;vCtrls.dampingFactor=.08;vCtrls.minDistance=10;vCtrls.maxDistance=40;
+  vCtrls.maxPolarAngle=Math.PI/2.05;vCtrls.autoRotate=true;vCtrls.autoRotateSpeed=.9;vCtrls.target.set(0,3.2,1);
+  function size(){const r=canvas.getBoundingClientRect();vRen.setSize(r.width,r.height,false);vCam.aspect=(r.width/r.height)||1;vCam.updateProjectionMatrix();}
+  size();addEventListener('resize',size);
+  vReady=true;
+  const ld=document.getElementById('v3dLoad');if(ld)ld.style.display='none';
+}
+function vLoop(){vRAF=requestAnimationFrame(vLoop);if(!vReady)return;vCtrls.update();vRen.render(vScene,vCam);}
+function openTour(){
+  document.getElementById('v3d').classList.add('open');
+  document.body.classList.add('lock');
+  window.__paused=true;                 // free GPU from the background scene
+  if(!vReady){setTimeout(buildVilla,40);}
+  cancelAnimationFrame(vRAF);vLoop();
+}
+function closeTour(){
+  document.getElementById('v3d').classList.remove('open');
+  document.body.classList.remove('lock');
+  window.__paused=false;
+  cancelAnimationFrame(vRAF);
+}
+document.querySelectorAll('[data-tour]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();openTour();}));
+document.getElementById('v3dClose').addEventListener('click',closeTour);
+document.getElementById('v3d').addEventListener('click',e=>{if(e.target.id==='v3d')closeTour();});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeTour();});
 
 /* ============ Lazy images with fade + fallback ============ */
 function loadImg(img){
@@ -571,8 +702,19 @@ if(matchMedia('(hover:hover)').matches){
   });
 }
 
-/* ============ WebGL skyline ============ */
-let renderer,scene,camera,city,dust,clock;
+/* ============ WebGL background — Jeddah Corniche ============ */
+let renderer,scene,camera,city,dust,clock,elapsed=0,fountain,fpos,fvel,sparkle;
+const FN=520, FBASE={x:0,y:0,z:10};
+function resetDrop(i){
+  const a=Math.random()*Math.PI*2, r=Math.random()*0.7;
+  fpos[i*3]=FBASE.x+Math.cos(a)*r;
+  fpos[i*3+1]=FBASE.y+Math.random()*0.4;
+  fpos[i*3+2]=FBASE.z+Math.sin(a)*r;
+  const up=20+Math.random()*8;
+  fvel[i*3]=(Math.random()-.5)*1.3;
+  fvel[i*3+1]=up;
+  fvel[i*3+2]=(Math.random()-.5)*1.3;
+}
 function initSky(){
   const canvas=document.getElementById('sky');
   renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
@@ -584,9 +726,9 @@ function initSky(){
 
   city=new THREE.Group();
   const geo=new THREE.BoxGeometry(1,1,1);
-  for(let x=-9;x<=9;x++){for(let z=-9;z<=4;z++){
-    if(Math.abs(x)<2&&z>0)continue;
-    const h=1+Math.random()*Math.random()*12;
+  for(let x=-9;x<=9;x++){for(let z=-13;z<=-1;z++){
+    const edge=Math.abs(x)>6;
+    const h=(edge?6:1)+Math.random()*Math.random()*(edge?16:12);
     const dark=0.04+Math.random()*0.05;
     const lit=Math.random()>0.78;
     const mat=new THREE.MeshStandardMaterial({
@@ -601,6 +743,28 @@ function initSky(){
     city.add(m);
   }}
   scene.add(city);
+
+  // ===== Red Sea (Corniche water) =====
+  const sea=new THREE.Mesh(new THREE.PlaneGeometry(220,70),
+    new THREE.MeshStandardMaterial({color:0x08222f,metalness:.7,roughness:.3}));
+  sea.rotation.x=-Math.PI/2;sea.position.set(0,-0.06,14);scene.add(sea);
+  // water sparkles (city lights on the water)
+  const WN=260,wp=new Float32Array(WN*3);
+  for(let i=0;i<WN;i++){wp[i*3]=(Math.random()-.5)*150;wp[i*3+1]=0.05;wp[i*3+2]=2+Math.random()*46;}
+  const wg=new THREE.BufferGeometry();wg.setAttribute('position',new THREE.BufferAttribute(wp,3));
+  sparkle=new THREE.Points(wg,new THREE.PointsMaterial({color:0xe7cf9c,size:0.13,transparent:true,opacity:.5,depthWrite:false,blending:THREE.AdditiveBlending}));
+  scene.add(sparkle);
+
+  // ===== King Fahd Fountain =====
+  fpos=new Float32Array(FN*3);fvel=new Float32Array(FN*3);
+  for(let i=0;i<FN;i++){resetDrop(i);fpos[i*3+1]=Math.random()*20;}
+  const fg=new THREE.BufferGeometry();fg.setAttribute('position',new THREE.BufferAttribute(fpos,3));
+  fountain=new THREE.Points(fg,new THREE.PointsMaterial({color:0xe3f4ff,size:0.17,transparent:true,opacity:.95,depthWrite:false,blending:THREE.AdditiveBlending}));
+  scene.add(fountain);
+  const column=new THREE.Mesh(new THREE.CylinderGeometry(0.3,0.7,24,12,1,true),
+    new THREE.MeshBasicMaterial({color:0xbfe9ff,transparent:true,opacity:.10,side:THREE.DoubleSide,depthWrite:false,blending:THREE.AdditiveBlending}));
+  column.position.set(FBASE.x,12,FBASE.z);scene.add(column);
+  const fLight=new THREE.PointLight(0x9fd8ff,1.4,55);fLight.position.set(FBASE.x,8,FBASE.z);scene.add(fLight);
 
   scene.add(new THREE.AmbientLight(0x223046,0.6));
   const g1=new THREE.PointLight(0xe7cf9c,1.6,80);g1.position.set(-14,18,14);scene.add(g1);
@@ -622,14 +786,25 @@ addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHe
 function animate(){
   requestAnimationFrame(animate);
   if(document.hidden||window.__paused)return;
-  const t=clock.getElapsedTime();
+  const dt=Math.min(clock.getDelta(),0.05);elapsed+=dt;const t=elapsed;
   const sp=scrollY/innerHeight;
-  city.rotation.y=t*0.02+mx*0.3;
+  city.rotation.y=t*0.015+mx*0.22;
   camera.position.x+=((mx*6)-camera.position.x)*0.04;
-  camera.position.y=7+sp*5-my*2;
+  camera.position.y=8+sp*5-my*2;
   camera.position.z=26-Math.min(sp,3)*5;
-  camera.lookAt(0,5,0);
+  camera.lookAt(0,6,2);
   dust.rotation.y=t*0.03;dust.position.y=(t*0.2)%6;
+  if(sparkle){sparkle.material.opacity=0.4+Math.sin(t*2)*0.18;}
+  // King Fahd Fountain physics
+  const g=12;
+  for(let i=0;i<FN;i++){
+    fvel[i*3+1]-=g*dt;
+    fpos[i*3]+=fvel[i*3]*dt;
+    fpos[i*3+1]+=fvel[i*3+1]*dt;
+    fpos[i*3+2]+=fvel[i*3+2]*dt;
+    if(fpos[i*3+1]<0)resetDrop(i);
+  }
+  fountain.geometry.attributes.position.needsUpdate=true;
   renderer.render(scene,camera);
 }
 try{initSky();}catch(e){console.warn('sky failed',e);document.getElementById('sky').style.display='none';}
