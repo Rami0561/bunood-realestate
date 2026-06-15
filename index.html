@@ -280,6 +280,24 @@ footer{border-top:1px solid var(--brd2);padding:60px 30px 40px}
 .v3d-hint{position:absolute;bottom:22px;inset-inline-end:26px;z-index:3;color:var(--muted);font-size:13px;letter-spacing:.04em}
 .v3d-load{position:absolute;inset:0;display:grid;place-items:center;color:var(--gold);z-index:2;font-size:15px;letter-spacing:.2em}
 
+/* ---- Video tour button + player ---- */
+.playv{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;border:none;background:none;cursor:none;
+  display:flex;flex-direction:column;align-items:center;gap:10px;color:#fff}
+.playv .pcirc{width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,var(--gold-l),var(--gold));
+  display:grid;place-items:center;box-shadow:0 12px 34px rgba(0,0,0,.55);transition:.3s var(--ease)}
+.playv .pcirc svg{width:26px;height:26px;margin-inline-start:3px}
+.playv .pcirc::after{content:"";position:absolute;width:62px;height:62px;border-radius:50%;border:2px solid var(--gold-l);opacity:.55;animation:pring 1.8s ease-out infinite}
+.playv:hover .pcirc{transform:scale(1.1)}
+.playv .ptxt{font-weight:700;font-size:13px;background:rgba(8,11,18,.6);padding:5px 14px;border-radius:50px;backdrop-filter:blur(6px)}
+.vplay{position:fixed;inset:0;z-index:320;display:none;background:rgba(4,7,12,.93);backdrop-filter:blur(12px);place-items:center}
+.vplay.open{display:grid}
+.vplay-panel{position:relative;width:min(440px,92vw);max-height:90vh}
+.vplay video{width:100%;max-height:88vh;border-radius:18px;border:1px solid var(--gold);background:#000;box-shadow:0 40px 110px rgba(0,0,0,.75)}
+.vplay-cap{text-align:center;color:var(--gold-l);font-family:'El Messiri',serif;margin-top:14px;font-size:18px}
+.vplay-close{position:absolute;top:-16px;inset-inline-end:-16px;width:46px;height:46px;border-radius:50%;border:1px solid var(--gold);
+  background:var(--ink2);color:#fff;cursor:none;z-index:2;font-size:20px;display:grid;place-items:center;transition:.3s}
+.vplay-close:hover{color:var(--gold);transform:rotate(90deg)}
+
 /* ---- Responsive ---- */
 @media(max-width:980px){
   .split,.map-box{grid-template-columns:1fr;gap:40px}
@@ -509,6 +527,15 @@ footer{border-top:1px solid var(--brd2);padding:60px 30px 40px}
   </div>
 </div>
 
+<!-- Video tour player -->
+<div class="vplay" id="vplay">
+  <div class="vplay-panel">
+    <button class="vplay-close" id="vplayClose" data-cur aria-label="close">✕</button>
+    <video id="vplayVideo" controls playsinline preload="metadata"></video>
+    <div class="vplay-cap" id="vplayCap"></div>
+  </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -518,7 +545,7 @@ footer{border-top:1px solid var(--brd2);padding:60px 30px 40px}
 /* ============ Property data ============ */
 const ESTATES=[
   {t:"فيلا فاخرة",t_en:"Luxury Villa",loc:"حي البساتين، جدة",loc_en:"Al Basatin, Jeddah",price:"4,500,000",badge:"حصري",badge_en:"Exclusive",beds:11,area:"660",img:"1613490493576-7fde63acd811"},
-  {t:"روف للتمليك",t_en:"Penthouse for Sale",loc:"حي النزهة، جدة",loc_en:"Al Nuzha, Jeddah",price:"835,000",badge:"جاهز للتمليك",badge_en:"Move-in Ready",beds:3,area:"219",img:"1502672023488-70e25813eb80"},
+  {t:"روف للتمليك",t_en:"Penthouse for Sale",loc:"حي النزهة، جدة",loc_en:"Al Nuzha, Jeddah",price:"835,000",badge:"جاهز للتمليك",badge_en:"Move-in Ready",beds:3,area:"219",img:"1502672023488-70e25813eb80",vid:"assets/roof-nuzha.mp4",photo:"assets/roof-nuzha.jpg"},
   {t:"فيلا دورين وملحق",t_en:"Two-Floor Villa + Annex",loc:"مخطط ولي العهد، مكة",loc_en:"Wali Al-Ahd, Makkah",price:"1,270,000",badge:"داخل حد الحرم",badge_en:"Within Haram",beds:6,area:"300",img:"1605276374104-dee2a0ed3cd6"},
   {t:"شقة 4 غرف — مشروع النعيم",t_en:"4-Room Apartment — Al Naeem",loc:"حي النعيم، جدة",loc_en:"Al Naeem, Jeddah",price:"660,000",badge:"يقبل الدعم السكني",badge_en:"Subsidy Eligible",beds:4,area:"130",img:"1502005097973-6a7082348e28"},
   {t:"فيلا للبيع",t_en:"Villa for Sale",loc:"القشاشية الجديدة، مكة",loc_en:"Al Qashashiyah, Makkah",price:"1,399,000",badge:"للبيع",badge_en:"For Sale",beds:5,area:"600",img:"1512917774080-9991f1c4c750"},
@@ -544,13 +571,15 @@ ESTATES.forEach((e,i)=>{
     : `<div>${areaSvg}<span>${e.area} م²</span></div>
        <div>${areaSvg.replace('viewBox','data-x viewBox')}<span class="sv" data-ar="أرض سكنية" data-en="Residential land">أرض سكنية</span></div>`;
   const tourBtn = i===0 ? '<button class="tour3d" data-tour data-cur>🔄 <span data-ar="جولة 3D" data-en="3D Tour">جولة 3D</span></button>' : '';
+  const playBtn = e.vid ? '<button class="playv" data-vid="'+e.vid+'" data-cur><span class="pcirc"><svg viewBox="0 0 24 24" fill="#1a1206"><path d="M8 5v14l11-7z"/></svg></span><span class="ptxt" data-ar="جولة فيديو" data-en="Video tour">جولة فيديو</span></button>' : '';
+  const cardImg = e.photo || ('https://images.unsplash.com/photo-'+e.img+'?auto=format&fit=crop&w=900&q=70');
   const card=document.createElement('div');
   card.className='estate';card.dataset.i=i;
   card.innerHTML=`
     <div class="ph">
-      ${tourBtn}
+      ${tourBtn}${playBtn}
       <span class="badge" data-ar="${e.badge}" data-en="${e.badge_en}">${e.badge}</span>
-      <img data-src="https://images.unsplash.com/photo-${e.img}?auto=format&fit=crop&w=900&q=70" alt="${e.t}">
+      <img data-src="${cardImg}" alt="${e.t}">
       <div class="price"><small>﷼</small> ${e.price}</div>
     </div>
     <div class="body">
@@ -674,6 +703,26 @@ document.querySelectorAll('[data-tour]').forEach(b=>b.addEventListener('click',e
 document.getElementById('v3dClose').addEventListener('click',closeTour);
 document.getElementById('v3d').addEventListener('click',e=>{if(e.target.id==='v3d')closeTour();});
 addEventListener('keydown',e=>{if(e.key==='Escape')closeTour();});
+
+/* ============ Video tour player ============ */
+function openVid(src,cap){
+  const m=document.getElementById('vplay'),v=document.getElementById('vplayVideo');
+  document.getElementById('vplayCap').textContent=cap||'';
+  v.src=src;m.classList.add('open');document.body.classList.add('lock');window.__paused=true;
+  v.play().catch(()=>{});
+}
+function closeVid(){
+  const m=document.getElementById('vplay'),v=document.getElementById('vplayVideo');
+  v.pause();v.removeAttribute('src');v.load();m.classList.remove('open');document.body.classList.remove('lock');window.__paused=false;
+}
+document.querySelectorAll('[data-vid]').forEach(b=>b.addEventListener('click',e=>{
+  e.stopPropagation();
+  const card=b.closest('.estate');const cap=card?(card.querySelector('.tt')?.textContent||''):'';
+  openVid(b.dataset.vid,cap);
+}));
+document.getElementById('vplayClose').addEventListener('click',closeVid);
+document.getElementById('vplay').addEventListener('click',e=>{if(e.target.id==='vplay')closeVid();});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeVid();});
 
 /* ============ Lazy images with fade + fallback ============ */
 function loadImg(img){
