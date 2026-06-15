@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>بنود العمران العقارية | نخبة العقارات في جدة</title>
 <meta name="description" content="شركة بنود العمران العقارية — نخبة الفلل والشقق والأراضي الاستثمارية في جدة. تسويق عقاري بمعايير عالمية." />
+<meta name="theme-color" content="#141518" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2036%2036'%3E%3Crect%20width='36'%20height='36'%20rx='8'%20fill='%23161719'/%3E%3Crect%20x='8'%20y='17'%20width='20'%20height='4'%20rx='2'%20fill='%23ece9e1'/%3E%3Crect%20x='8'%20y='12'%20width='4'%20height='9'%20rx='1.6'%20fill='%23ece9e1'/%3E%3Crect%20x='24'%20y='12'%20width='4'%20height='9'%20rx='1.6'%20fill='%23ece9e1'/%3E%3Crect%20x='16'%20y='24'%20width='4'%20height='4'%20rx='1.2'%20fill='%23c7563b'/%3E%3C/svg%3E" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,16 +14,17 @@
 
 <style>
 :root{
-  --ink:#080b12;
-  --ink2:#0d131f;
+  /* ===== Bunood Al-Omran — "المنصة" brand system ===== */
+  --ink:#141518;        /* charcoal base */
+  --ink2:#1c1f24;       /* raised charcoal */
   --panel:rgba(255,255,255,.04);
-  --brd:rgba(201,162,90,.18);
+  --brd:rgba(199,86,59,.20);
   --brd2:rgba(255,255,255,.10);
-  --gold:#c9a25a;
-  --gold-l:#e7cf9c;
-  --gold-d:#9c7a3c;
-  --cream:#f3ede1;
-  --muted:#93a0b2;
+  --gold:#c7563b;       /* signature terracotta (accent) */
+  --gold-l:#dd6f55;     /* light terracotta */
+  --gold-d:#9a3d27;     /* deep terracotta */
+  --cream:#ece9e1;      /* paper / off-white */
+  --muted:#99a0a8;      /* cool gray */
   --r:18px;
   --maxw:1280px;
   --ease:cubic-bezier(.16,1,.3,1);
@@ -37,7 +40,7 @@ body{
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 h1,h2,h3,h4{font-family:'El Messiri',serif;font-weight:700;line-height:1.12}
-::selection{background:var(--gold);color:#1a1206}
+::selection{background:var(--gold);color:#fbf7ef}
 .serif-en{font-family:'Cormorant Garamond',serif;font-style:italic}
 
 /* ---- Custom cursor ---- */
@@ -64,18 +67,18 @@ h1,h2,h3,h4{font-family:'El Messiri',serif;font-weight:700;line-height:1.12}
 /* ---- WebGL bg ---- */
 #sky{position:fixed;inset:0;width:100%;height:100%;z-index:0}
 .veil{position:fixed;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(1100px 700px at 78% 8%,rgba(201,162,90,.10),transparent 55%),
-    linear-gradient(180deg,rgba(8,11,18,.30),rgba(8,11,18,.72) 65%,var(--ink));}
+  background:radial-gradient(1100px 700px at 78% 8%,rgba(199,86,59,.10),transparent 55%),
+    linear-gradient(180deg,rgba(20,21,24,.30),rgba(20,21,24,.72) 65%,var(--ink));}
 .main{position:relative;z-index:2}
 
 /* ---- Nav ---- */
 header{position:fixed;top:0;inset-inline:0;z-index:60;transition:.5s var(--ease)}
-header.scr{background:rgba(8,11,18,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--brd2)}
+header.scr{background:rgba(20,21,24,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--brd2)}
 .nav{max-width:var(--maxw);margin:auto;display:flex;align-items:center;justify-content:space-between;padding:22px 30px;gap:20px}
 .brand{display:flex;align-items:center;gap:13px}
 .brand .mk{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;
-  background:linear-gradient(140deg,var(--gold-l),var(--gold-d));box-shadow:0 10px 28px rgba(201,162,90,.32)}
-.brand .mk svg{width:26px;height:26px}
+  background:var(--cream);box-shadow:0 8px 22px rgba(0,0,0,.4)}
+.brand .mk svg{width:30px;height:30px}
 .brand .nm{display:flex;flex-direction:column;line-height:1.15}
 .brand .nm b{font-family:'El Messiri',serif;font-size:21px;font-weight:700}
 .brand .nm span{font-size:11px;color:var(--gold);letter-spacing:.22em}
@@ -91,8 +94,8 @@ header.scr{background:rgba(8,11,18,.82);backdrop-filter:blur(18px);border-bottom
 .lang:hover{border-color:var(--gold);color:var(--gold)}
 .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 26px;border-radius:50px;font-weight:700;font-size:15px;
   font-family:inherit;border:none;cursor:none;transition:.45s var(--ease);white-space:nowrap;position:relative;overflow:hidden}
-.btn-gold{background:linear-gradient(135deg,var(--gold-l),var(--gold));color:#1a1206;box-shadow:0 12px 30px rgba(201,162,90,.28)}
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 18px 44px rgba(201,162,90,.45)}
+.btn-gold{background:linear-gradient(135deg,var(--gold-l),var(--gold));color:#fbf7ef;box-shadow:0 12px 30px rgba(199,86,59,.28)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 18px 44px rgba(199,86,59,.45)}
 .btn-out{background:transparent;border:1px solid var(--brd);color:var(--cream)}
 .btn-out:hover{border-color:var(--gold);color:var(--gold)}
 .btn-wa{background:linear-gradient(135deg,#25d366,#10864a);color:#fff;box-shadow:0 12px 30px rgba(37,211,102,.3)}
@@ -138,13 +141,13 @@ section{padding:130px 30px;position:relative}
   background:var(--ink2);border:1px solid var(--brd2);
   box-shadow:0 40px 80px rgba(0,0,0,.55);transition:transform .8s var(--ease),opacity .8s var(--ease),box-shadow .5s;
   cursor:none;will-change:transform}
-.estate.active{border-color:var(--gold);box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 0 1px var(--gold),0 0 60px rgba(201,162,90,.25)}
+.estate.active{border-color:var(--gold);box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 0 1px var(--gold),0 0 60px rgba(199,86,59,.25)}
 .estate .ph{position:relative;height:62%;overflow:hidden;background:linear-gradient(135deg,#1a2436,#0e1726)}
 .estate .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease);opacity:0}
 .estate .ph img.on{opacity:1}
 .estate.active .ph img{transform:scale(1.06)}
-.estate .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(13,19,31,.9))}
-.estate .badge{position:absolute;top:16px;inset-inline-start:16px;z-index:2;background:rgba(201,162,90,.92);color:#1a1206;
+.estate .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(28,31,36,.9))}
+.estate .badge{position:absolute;top:16px;inset-inline-start:16px;z-index:2;background:rgba(199,86,59,.92);color:#fbf7ef;
   font-weight:800;font-size:12.5px;padding:6px 14px;border-radius:50px;letter-spacing:.04em}
 .estate .price{position:absolute;bottom:14px;inset-inline-end:18px;z-index:2;font-family:'El Messiri',serif;
   font-size:26px;font-weight:700;color:#fff}
@@ -159,7 +162,7 @@ section{padding:130px 30px;position:relative}
 .flow-ctrl{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:34px}
 .arrow{width:56px;height:56px;border-radius:50%;border:1px solid var(--brd);background:var(--panel);color:var(--cream);
   display:grid;place-items:center;cursor:none;transition:.4s var(--ease)}
-.arrow:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,162,90,.08)}
+.arrow:hover{border-color:var(--gold);color:var(--gold);background:rgba(199,86,59,.08)}
 .arrow svg{width:22px;height:22px}
 .dots{display:flex;gap:10px}
 .dots button{width:9px;height:9px;border-radius:50%;border:none;background:rgba(255,255,255,.2);cursor:none;transition:.3s;padding:0}
@@ -180,8 +183,8 @@ section{padding:130px 30px;position:relative}
 .about-vis img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s}
 .about-vis img.on{opacity:1}
 .about-vis .ph-fallback{position:absolute;inset:0;background:linear-gradient(135deg,#16202f,#0c1320);display:grid;place-items:center}
-.about-vis .ph-fallback svg{width:90px;height:90px;stroke:rgba(201,162,90,.4)}
-.about-vis .float{position:absolute;bottom:22px;inset-inline-start:22px;background:rgba(8,11,18,.78);backdrop-filter:blur(10px);
+.about-vis .ph-fallback svg{width:90px;height:90px;stroke:rgba(199,86,59,.4)}
+.about-vis .float{position:absolute;bottom:22px;inset-inline-start:22px;background:rgba(20,21,24,.78);backdrop-filter:blur(10px);
   border:1px solid var(--brd);border-radius:16px;padding:18px 22px}
 .about-vis .float b{font-family:'El Messiri',serif;font-size:30px;color:var(--gold-l);display:block}
 .about-vis .float span{color:var(--muted);font-size:13px}
@@ -189,7 +192,7 @@ section{padding:130px 30px;position:relative}
 .feat{padding:24px;border:1px solid var(--brd2);border-radius:16px;transition:.4s var(--ease);background:var(--panel)}
 .feat:hover{border-color:var(--gold);transform:translateY(-4px)}
 .feat .fi{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:14px;
-  background:linear-gradient(135deg,rgba(201,162,90,.2),rgba(201,162,90,.06));border:1px solid var(--brd)}
+  background:linear-gradient(135deg,rgba(199,86,59,.2),rgba(199,86,59,.06));border:1px solid var(--brd)}
 .feat .fi svg{width:24px;height:24px;stroke:var(--gold)}
 .feat h4{font-size:19px;margin-bottom:6px}
 .feat p{color:var(--muted);font-size:14.5px}
@@ -203,7 +206,7 @@ section{padding:130px 30px;position:relative}
 .serv:hover{transform:translateY(-8px);border-color:var(--brd)}
 .serv:hover::after{width:100%}
 .serv .si{font-family:'El Messiri',serif;font-size:30px;color:var(--gold);margin-bottom:18px;
-  width:64px;height:64px;border-radius:16px;display:grid;place-items:center;border:1px solid var(--brd);background:rgba(201,162,90,.05)}
+  width:64px;height:64px;border-radius:16px;display:grid;place-items:center;border:1px solid var(--brd);background:rgba(199,86,59,.05)}
 .serv h3{font-size:22px;margin-bottom:10px}
 .serv p{color:var(--muted);font-size:15px}
 
@@ -214,7 +217,7 @@ section{padding:130px 30px;position:relative}
 .map-info p{color:var(--muted);margin-bottom:30px}
 .map-info .row{display:flex;align-items:flex-start;gap:15px;margin-bottom:22px}
 .map-info .row .ri{flex:0 0 44px;height:44px;border-radius:12px;display:grid;place-items:center;
-  background:rgba(201,162,90,.1);border:1px solid var(--brd)}
+  background:rgba(199,86,59,.1);border:1px solid var(--brd)}
 .map-info .row .ri svg{width:22px;height:22px;stroke:var(--gold)}
 .map-info .row b{display:block;font-size:16px;color:var(--cream)}
 .map-info .row span{color:var(--muted);font-size:14.5px}
@@ -230,9 +233,9 @@ section{padding:130px 30px;position:relative}
 
 /* ---- CTA ---- */
 .cta{position:relative;overflow:hidden;border-radius:30px;padding:80px 50px;text-align:center;
-  background:linear-gradient(135deg,rgba(201,162,90,.14),rgba(201,162,90,.04));border:1px solid var(--brd)}
+  background:linear-gradient(135deg,rgba(199,86,59,.14),rgba(199,86,59,.04));border:1px solid var(--brd)}
 .cta::before{content:"";position:absolute;width:500px;height:500px;border-radius:50%;
-  background:radial-gradient(circle,rgba(201,162,90,.2),transparent 70%);top:-200px;inset-inline-start:-120px;filter:blur(30px)}
+  background:radial-gradient(circle,rgba(199,86,59,.2),transparent 70%);top:-200px;inset-inline-start:-120px;filter:blur(30px)}
 .cta h2{font-size:clamp(32px,5vw,54px);margin-bottom:18px;position:relative}
 .cta p{color:var(--muted);font-size:19px;margin-bottom:36px;position:relative}
 .cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative}
@@ -254,10 +257,10 @@ footer{border-top:1px solid var(--brd2);padding:60px 30px 40px}
 
 /* ---- 3D tour button + viewer ---- */
 .tour3d{position:absolute;top:14px;inset-inline-end:14px;z-index:3;border:none;cursor:none;
-  background:linear-gradient(135deg,var(--gold-l),var(--gold));color:#1a1206;font-family:inherit;font-weight:800;
+  background:linear-gradient(135deg,var(--gold-l),var(--gold));color:#fbf7ef;font-family:inherit;font-weight:800;
   font-size:12.5px;padding:8px 13px;border-radius:50px;display:flex;align-items:center;gap:6px;
   box-shadow:0 8px 22px rgba(0,0,0,.45);transition:.3s var(--ease)}
-.tour3d:hover{transform:scale(1.07);box-shadow:0 10px 28px rgba(201,162,90,.6)}
+.tour3d:hover{transform:scale(1.07);box-shadow:0 10px 28px rgba(199,86,59,.6)}
 .tour3d::after{content:"";position:absolute;inset:-2px;border-radius:50px;border:1px solid var(--gold-l);opacity:.6;animation:pring 2s ease-out infinite}
 @keyframes pring{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.5);opacity:0}}
 .v3d{position:fixed;inset:0;z-index:300;display:none;background:rgba(4,7,12,.9);backdrop-filter:blur(10px)}
@@ -273,7 +276,7 @@ footer{border-top:1px solid var(--brd2);padding:60px 30px 40px}
 .v3d-close{width:46px;height:46px;border-radius:50%;border:1px solid var(--brd);background:rgba(0,0,0,.45);
   color:#fff;display:grid;place-items:center;cursor:none;pointer-events:auto;font-size:20px;transition:.3s}
 .v3d-close:hover{border-color:var(--gold);color:var(--gold);transform:rotate(90deg)}
-.v3d-tag{position:absolute;bottom:20px;inset-inline-start:26px;z-index:3;background:rgba(8,11,18,.7);
+.v3d-tag{position:absolute;bottom:20px;inset-inline-start:26px;z-index:3;background:rgba(20,21,24,.7);
   border:1px solid var(--brd);border-radius:14px;padding:12px 18px;backdrop-filter:blur(8px)}
 .v3d-tag b{font-family:'El Messiri',serif;color:var(--gold-l);font-size:22px}
 .v3d-tag span{color:var(--muted);font-size:13px;display:block}
@@ -288,7 +291,7 @@ footer{border-top:1px solid var(--brd2);padding:60px 30px 40px}
 .playv .pcirc svg{width:26px;height:26px;margin-inline-start:3px}
 .playv .pcirc::after{content:"";position:absolute;width:62px;height:62px;border-radius:50%;border:2px solid var(--gold-l);opacity:.55;animation:pring 1.8s ease-out infinite}
 .playv:hover .pcirc{transform:scale(1.1)}
-.playv .ptxt{font-weight:700;font-size:13px;background:rgba(8,11,18,.6);padding:5px 14px;border-radius:50px;backdrop-filter:blur(6px)}
+.playv .ptxt{font-weight:700;font-size:13px;background:rgba(20,21,24,.6);padding:5px 14px;border-radius:50px;backdrop-filter:blur(6px)}
 .vplay{position:fixed;inset:0;z-index:320;display:none;background:rgba(4,7,12,.93);backdrop-filter:blur(12px);place-items:center}
 .vplay.open{display:grid}
 .vplay-panel{position:relative;width:min(440px,92vw);max-height:90vh}
@@ -313,7 +316,7 @@ footer{border-top:1px solid var(--brd2);padding:60px 30px 40px}
   .hero-meta{gap:26px}
   .foot{grid-template-columns:1fr}
   .menu.open{display:flex;position:absolute;top:84px;inset-inline:16px;flex-direction:column;
-    background:rgba(8,11,18,.97);backdrop-filter:blur(18px);padding:26px;border-radius:18px;border:1px solid var(--brd2)}
+    background:rgba(20,21,24,.97);backdrop-filter:blur(18px);padding:26px;border-radius:18px;border:1px solid var(--brd2)}
 }
 </style>
 </head>
@@ -337,7 +340,7 @@ footer{border-top:1px solid var(--brd2);padding:60px 30px 40px}
 <!-- Nav -->
 <header id="hdr"><nav class="nav">
   <a href="#home" class="brand" data-cur>
-    <span class="mk"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6" stroke="#1a1206" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+    <span class="mk"><svg viewBox="0 0 36 36" fill="none" aria-label="بنود العمران"><rect x="8" y="17" width="20" height="4" rx="2" fill="#161719"/><rect x="8" y="12" width="4" height="9" rx="1.6" fill="#161719"/><rect x="24" y="12" width="4" height="9" rx="1.6" fill="#161719"/><rect x="16" y="24" width="4" height="4" rx="1.2" fill="#c7563b"/></svg></span>
     <span class="nm"><b>بنود العمران</b><span data-ar="العقارية" data-en="REAL ESTATE">العقارية</span></span>
   </a>
   <div class="menu" id="menu">
@@ -453,7 +456,7 @@ footer{border-top:1px solid var(--brd2);padding:60px 30px 40px}
     <p data-ar="مكتبنا في قلب جدة، بانتظاركم لخدمتكم واختيار عقاركم القادم." data-en="Our office is in the heart of Jeddah, ready to help you choose your next property.">مكتبنا في قلب جدة، بانتظاركم لخدمتكم واختيار عقاركم القادم.</p>
     <div class="row"><div class="ri"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M12 21s-7-5.2-7-11a7 7 0 0114 0c0 5.8-7 11-7 11z" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4"/></svg></div><div><b data-ar="العنوان" data-en="Address">العنوان</b><span data-ar="شركة بنود العمران العقارية، جدة، المملكة العربية السعودية" data-en="Bunood Al-Omran Real Estate, Jeddah, KSA">شركة بنود العمران العقارية، جدة، المملكة العربية السعودية</span></div></div>
     <div class="row"><div class="ri"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.2-1.2a2 2 0 012.1-.5c.9.3 1.9.6 2.9.7a2 2 0 011.7 2z" stroke-linecap="round"/></svg></div><div><b data-ar="الجوال" data-en="Phone">الجوال</b><span><a href="tel:+966555607093" data-cur style="color:var(--gold)" dir="ltr">0555607093</a></span></div></div>
-    <div class="row"><div class="ri"><svg viewBox="0 0 24 24" fill="currentColor" style="stroke:none"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm4.4 12c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.1 0-.3 0-.4l-.8-1.9c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 00-.7.3c-.3.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.2.7 3 .6.5 0 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1z" fill="#c9a25a"/></svg></div><div><b data-ar="واتساب" data-en="WhatsApp">واتساب</b><span><a href="https://wa.me/966555607093" data-cur style="color:var(--gold)" data-ar="راسلنا مباشرة على واتساب" data-en="Message us on WhatsApp">راسلنا مباشرة على واتساب</a></span></div></div>
+    <div class="row"><div class="ri"><svg viewBox="0 0 24 24" fill="currentColor" style="stroke:none"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm4.4 12c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.1 0-.3 0-.4l-.8-1.9c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 00-.7.3c-.3.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.2.7 3 .6.5 0 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1z" fill="#c7563b"/></svg></div><div><b data-ar="واتساب" data-en="WhatsApp">واتساب</b><span><a href="https://wa.me/966555607093" data-cur style="color:var(--gold)" data-ar="راسلنا مباشرة على واتساب" data-en="Message us on WhatsApp">راسلنا مباشرة على واتساب</a></span></div></div>
     <a href="https://maps.google.com/?q=21.5876763,39.216805" class="btn btn-out" data-cur style="margin-top:8px" data-ar="افتح في خرائط جوجل" data-en="Open in Google Maps">افتح في خرائط جوجل</a>
   </div>
   <div class="map-frame">
@@ -481,7 +484,7 @@ footer{border-top:1px solid var(--brd2);padding:60px 30px 40px}
 <footer><div class="foot">
   <div>
     <a href="#home" class="brand" data-cur>
-      <span class="mk"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6" stroke="#1a1206" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+      <span class="mk"><svg viewBox="0 0 36 36" fill="none" aria-label="بنود العمران"><rect x="8" y="17" width="20" height="4" rx="2" fill="#161719"/><rect x="8" y="12" width="4" height="9" rx="1.6" fill="#161719"/><rect x="24" y="12" width="4" height="9" rx="1.6" fill="#161719"/><rect x="16" y="24" width="4" height="4" rx="1.2" fill="#c7563b"/></svg></span>
       <span class="nm"><b>بنود العمران</b><span data-ar="العقارية" data-en="REAL ESTATE">العقارية</span></span>
     </a>
     <p data-ar="نخبة العقارات في جدة، بتجربة تسويق عقاري بمعايير عالمية." data-en="Premium properties in Jeddah with world-class marketing.">نخبة العقارات في جدة، بتجربة تسويق عقاري بمعايير عالمية.</p>
@@ -571,7 +574,7 @@ ESTATES.forEach((e,i)=>{
     : `<div>${areaSvg}<span>${e.area} م²</span></div>
        <div>${areaSvg.replace('viewBox','data-x viewBox')}<span class="sv" data-ar="أرض سكنية" data-en="Residential land">أرض سكنية</span></div>`;
   const tourBtn = i===0 ? '<button class="tour3d" data-tour data-cur>🔄 <span data-ar="جولة 3D" data-en="3D Tour">جولة 3D</span></button>' : '';
-  const playBtn = e.vid ? '<button class="playv" data-vid="'+e.vid+'" data-cur><span class="pcirc"><svg viewBox="0 0 24 24" fill="#1a1206"><path d="M8 5v14l11-7z"/></svg></span><span class="ptxt" data-ar="جولة فيديو" data-en="Video tour">جولة فيديو</span></button>' : '';
+  const playBtn = e.vid ? '<button class="playv" data-vid="'+e.vid+'" data-cur><span class="pcirc"><svg viewBox="0 0 24 24" fill="#fbf7ef"><path d="M8 5v14l11-7z"/></svg></span><span class="ptxt" data-ar="جولة فيديو" data-en="Video tour">جولة فيديو</span></button>' : '';
   const cardImg = e.photo || ('https://images.unsplash.com/photo-'+e.img+'?auto=format&fit=crop&w=900&q=70');
   const card=document.createElement('div');
   card.className='estate';card.dataset.i=i;
@@ -642,11 +645,11 @@ function buildVilla(){
   const plaza=new THREE.Mesh(new THREE.CircleGeometry(13,40),new THREE.MeshStandardMaterial({color:0xb9a883,roughness:.9}));
   plaza.rotation.x=-Math.PI/2;plaza.position.y=0.02;vScene.add(plaza);
   // materials
-  const wall=new THREE.MeshStandardMaterial({color:0xf3ede1,roughness:.85,metalness:.04});
+  const wall=new THREE.MeshStandardMaterial({color:0xece9e1,roughness:.85,metalness:.04});
   const wall2=new THREE.MeshStandardMaterial({color:0xe4dccb,roughness:.9});
   const glass=new THREE.MeshStandardMaterial({color:0x1d2c3c,roughness:.12,metalness:.7,emissive:0x10202e,emissiveIntensity:.6});
   const dark=new THREE.MeshStandardMaterial({color:0x23262c,roughness:.6,metalness:.3});
-  const gold=new THREE.MeshStandardMaterial({color:0xc9a25a,roughness:.35,metalness:.7});
+  const gold=new THREE.MeshStandardMaterial({color:0xc7563b,roughness:.35,metalness:.7});
   const v=new THREE.Group();
   function box(w,h,d,x,y,z,m){const b=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);b.position.set(x,y,z);v.add(b);return b;}
   // ground floor
@@ -779,7 +782,7 @@ function initSky(){
   const canvas=document.getElementById('sky');
   renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
   renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
-  scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x080b12,0.035);
+  scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x141518,0.035);
   camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,0.1,200);
   camera.position.set(0,7,26);
   clock=new THREE.Clock();
@@ -794,7 +797,7 @@ function initSky(){
     const mat=new THREE.MeshStandardMaterial({
       color:new THREE.Color(dark,dark*1.02,dark*1.1),
       metalness:.4,roughness:.65,
-      emissive:lit?new THREE.Color(0xc9a25a):new THREE.Color(0x0a0d14),
+      emissive:lit?new THREE.Color(0xc7563b):new THREE.Color(0x0a0d14),
       emissiveIntensity:lit?(0.25+Math.random()*0.5):0
     });
     const m=new THREE.Mesh(geo,mat);
@@ -812,7 +815,7 @@ function initSky(){
   const WN=260,wp=new Float32Array(WN*3);
   for(let i=0;i<WN;i++){wp[i*3]=(Math.random()-.5)*150;wp[i*3+1]=0.05;wp[i*3+2]=2+Math.random()*46;}
   const wg=new THREE.BufferGeometry();wg.setAttribute('position',new THREE.BufferAttribute(wp,3));
-  sparkle=new THREE.Points(wg,new THREE.PointsMaterial({color:0xe7cf9c,size:0.13,transparent:true,opacity:.5,depthWrite:false,blending:THREE.AdditiveBlending}));
+  sparkle=new THREE.Points(wg,new THREE.PointsMaterial({color:0xdd6f55,size:0.13,transparent:true,opacity:.5,depthWrite:false,blending:THREE.AdditiveBlending}));
   scene.add(sparkle);
 
   // ===== King Fahd Fountain =====
@@ -827,15 +830,15 @@ function initSky(){
   const fLight=new THREE.PointLight(0x9fd8ff,1.4,55);fLight.position.set(FBASE.x,8,FBASE.z);scene.add(fLight);
 
   scene.add(new THREE.AmbientLight(0x223046,0.6));
-  const g1=new THREE.PointLight(0xe7cf9c,1.6,80);g1.position.set(-14,18,14);scene.add(g1);
+  const g1=new THREE.PointLight(0xdd6f55,1.6,80);g1.position.set(-14,18,14);scene.add(g1);
   const g2=new THREE.PointLight(0x3a6ea5,1.1,80);g2.position.set(16,12,-6);scene.add(g2);
-  const top=new THREE.DirectionalLight(0xc9a25a,0.5);top.position.set(0,30,10);scene.add(top);
+  const top=new THREE.DirectionalLight(0xc7563b,0.5);top.position.set(0,30,10);scene.add(top);
 
   // golden dust
   const N=300,pp=new Float32Array(N*3);
   for(let i=0;i<N;i++){pp[i*3]=(Math.random()-.5)*60;pp[i*3+1]=Math.random()*30;pp[i*3+2]=(Math.random()-.5)*50;}
   const pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pp,3));
-  dust=new THREE.Points(pg,new THREE.PointsMaterial({color:0xe7cf9c,size:0.09,transparent:true,opacity:.5,depthWrite:false,blending:THREE.AdditiveBlending}));
+  dust=new THREE.Points(pg,new THREE.PointsMaterial({color:0xdd6f55,size:0.09,transparent:true,opacity:.5,depthWrite:false,blending:THREE.AdditiveBlending}));
   scene.add(dust);
 
   addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
