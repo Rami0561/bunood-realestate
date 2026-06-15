@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rami0561.github.io/bunood-realestate/sitemap.xml
