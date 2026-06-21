@@ -1,7 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 96" role="img" aria-label="بنود العمران">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 110" role="img" aria-label="بنود العمران">
   <title>Bunood Al-Omran — mark for light backgrounds</title>
-  <rect x="28" y="46" width="64" height="12" rx="6" fill="#161719"/>
-  <rect x="28" y="30" width="12" height="28" rx="5" fill="#161719"/>
-  <rect x="80" y="30" width="12" height="28" rx="5" fill="#161719"/>
-  <rect x="54" y="68" width="12" height="12" rx="3.5" fill="#c7563b"/>
+  <rect x="53" y="22" width="14" height="64" rx="3.5" fill="#0c3527"/>
+  <rect x="34" y="38" width="13" height="48" rx="3.2" fill="#0c3527"/>
+  <rect x="72" y="46" width="12" height="40" rx="3" fill="#0c3527"/>
+  <circle cx="60" cy="13" r="4" fill="#b08a4a"/>
+  <rect x="28" y="86" width="64" height="5.5" rx="2.75" fill="#0c3527"/>
 </svg>
