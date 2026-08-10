@@ -24,7 +24,7 @@
 <meta name="geo.placename" content="Jeddah" />
 <meta name="geo.position" content="21.5876763;39.216805" />
 <meta name="ICBM" content="21.5876763, 39.216805" />
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20120%20120'%3E%3Crect%20width='120'%20height='120'%20rx='28'%20fill='%230c3527'/%3E%3Crect%20x='60'%20y='36'%20width='14'%20height='60'%20rx='3.5'%20fill='%23d9bd84'/%3E%3Crect%20x='42'%20y='50'%20width='13'%20height='46'%20rx='3.2'%20fill='%23d9bd84'/%3E%3Crect%20x='78'%20y='58'%20width='12'%20height='38'%20rx='3'%20fill='%23d9bd84'/%3E%3Crect%20x='36'%20y='96'%20width='60'%20height='5'%20rx='2.5'%20fill='%23f3ecdd'/%3E%3C/svg%3E" />
+<link rel="icon" type="image/png" href="assets/brand/bunood-favicon.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,8 +37,8 @@
   "name": "شركة بنود العمران العقارية",
   "alternateName": "Bunood Al-Omran Real Estate",
   "url": "https://rami0561.github.io/bunood-realestate/",
-  "logo": "https://rami0561.github.io/bunood-realestate/assets/brand/bunood-icon.svg",
-  "image": "https://rami0561.github.io/bunood-realestate/assets/brand/bunood-icon.svg",
+  "logo": "https://rami0561.github.io/bunood-realestate/assets/brand/bunood-logo-full.png",
+  "image": "https://rami0561.github.io/bunood-realestate/assets/brand/bunood-logo-full.png",
   "telephone": "+966555607093",
   "areaServed": { "@type": "City", "name": "Jeddah" },
   "address": { "@type": "PostalAddress", "addressLocality": "جدة", "addressRegion": "مكة المكرمة", "addressCountry": "SA" },
@@ -116,7 +116,7 @@ header{position:fixed;top:0;inset-inline:0;z-index:60;transition:.45s var(--ease
 header.scr{background:rgba(247,243,234,.86);backdrop-filter:blur(16px);border-bottom:1px solid var(--line2);box-shadow:0 6px 24px rgba(12,53,39,.05)}
 .nav{max-width:var(--maxw);margin:auto;display:flex;align-items:center;justify-content:space-between;padding:18px 28px;gap:20px}
 .brand{display:flex;align-items:center;gap:12px}
-.brand .mk{width:46px;height:46px;border-radius:13px;display:block;box-shadow:0 8px 20px rgba(12,53,39,.18)}
+.brand .mk{width:auto;height:46px;display:block}
 .brand .nm{display:flex;flex-direction:column;line-height:1.2}
 .brand .nm b{font-family:'Reem Kufi',sans-serif;font-size:20px;font-weight:700;color:var(--green)}
 .brand .nm span{font-size:10.5px;color:var(--gold-d);letter-spacing:.2em;font-weight:700}
@@ -234,6 +234,21 @@ header.scr{background:rgba(247,243,234,.86);backdrop-filter:blur(16px);border-bo
 
 /* ---- Services ---- */
 .serv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+/* ---- Contracting arm ---- */
+.contr{background:linear-gradient(135deg,var(--green),#114a38);border-radius:var(--r);padding:56px 48px;color:#e8f0ea;
+  display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;position:relative;overflow:hidden}
+.contr::before{content:"";position:absolute;width:460px;height:460px;border-radius:50%;
+  background:radial-gradient(circle,rgba(205,167,103,.15),transparent 70%);top:-170px;inset-inline-start:-130px;pointer-events:none}
+.contr .eyebrow{color:var(--gold-l)}
+.contr h2{font-size:clamp(28px,4vw,42px);color:#f3ecdd;margin-bottom:14px;position:relative}
+.contr h2 em{font-style:normal;color:var(--gold-l)}
+.contr p.csub{color:#d8e6dd;font-size:16.5px;margin-bottom:26px;max-width:480px;position:relative}
+.contr-feats{display:grid;grid-template-columns:1fr 1fr;gap:14px;position:relative}
+.cfeat{background:rgba(255,255,255,.05);border:1px solid rgba(205,167,103,.28);border-radius:16px;padding:18px 18px 16px;transition:.35s}
+.cfeat:hover{background:rgba(205,167,103,.1);transform:translateY(-3px)}
+.cfeat h4{color:var(--gold-l);font-size:16px;margin-bottom:5px}
+.cfeat p{color:#c9dbd1;font-size:13.5px;line-height:1.7}
+@media(max-width:900px){.contr{grid-template-columns:1fr;padding:40px 26px}}
 .serv{padding:36px 30px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);
   transition:.45s var(--ease);position:relative;overflow:hidden}
 .serv::after{content:"";position:absolute;inset-inline-start:0;top:0;width:0;height:3px;
@@ -343,13 +358,14 @@ footer{background:var(--green);color:#bcd0c6;padding:60px 28px 36px;margin-top:3
 <!-- Nav -->
 <header id="hdr"><nav class="nav">
   <a href="#home" class="brand">
-    <img class="mk" src="assets/brand/bunood-icon.svg" alt="بنود العمران" width="46" height="46">
+    <img class="mk" src="assets/brand/bunood-mark.png" alt="بنود العمران">
     <span class="nm"><b>بنود العمران</b><span data-ar="العقارية" data-en="REAL ESTATE">العقارية</span></span>
   </a>
   <div class="menu" id="menu">
     <a href="#estates" data-ar="العروض" data-en="Listings">العروض</a>
     <a href="#about" data-ar="عن الشركة" data-en="About">عن الشركة</a>
     <a href="#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a>
+    <a href="#contracting" data-ar="المقاولات" data-en="Contracting">المقاولات</a>
     <a href="#packages" data-ar="الباقات" data-en="Packages">الباقات</a>
     <a href="#location" data-ar="الموقع" data-en="Location">الموقع</a>
     <a href="#contact" data-ar="تواصل" data-en="Contact">تواصل</a>
@@ -446,6 +462,26 @@ footer{background:var(--green);color:#bcd0c6;padding:60px 28px 36px;margin-top:3
     <div class="serv reveal"><div class="si">02</div><h3 data-ar="التطوير والمقاولات" data-en="Development & Contracting">التطوير والمقاولات</h3><p data-ar="تطوير المشاريع العقارية وتنفيذ أعمال المقاولات بجودة عالية." data-en="Developing real estate projects and executing contracting works to a high standard.">تطوير المشاريع العقارية وتنفيذ أعمال المقاولات بجودة عالية.</p></div>
     <div class="serv reveal"><div class="si">03</div><h3 data-ar="الوساطة العقارية" data-en="Brokerage">الوساطة العقارية</h3><p data-ar="وساطة مرخّصة بين البائع والمشتري بكل شفافية وموثوقية." data-en="Licensed brokerage between seller and buyer with full transparency.">وساطة مرخّصة بين البائع والمشتري بكل شفافية وموثوقية.</p></div>
     <div class="serv reveal"><div class="si">04</div><h3 data-ar="الاستشارات العقارية" data-en="Consulting">الاستشارات العقارية</h3><p data-ar="تقييم ودراسة جدوى ونصائح خبراء قبل أي قرار." data-en="Valuation, feasibility and expert advice.">تقييم ودراسة جدوى ونصائح خبراء قبل أي قرار.</p></div>
+  </div>
+</div></section>
+
+<!-- Contracting arm -->
+<section id="contracting"><div class="wrap">
+  <div class="contr reveal">
+    <div>
+      <div class="eyebrow"><span data-ar="ذراع المقاولات" data-en="Contracting Arm">ذراع المقاولات</span></div>
+      <h2 data-ar="بنود العمران " data-en="Bunood Al-Omran ">بنود العمران <em data-ar="للمقاولات والتطوير" data-en="Contracting & Development">للمقاولات والتطوير</em></h2>
+      <p class="csub" data-ar="لسنا وسيطاً فقط — نملك شركة مقاولات تنفّذ وتطوّر المشاريع بأيدينا: من الأرض إلى مفتاح التسليم، بجودة نضع اسمنا عليها." data-en="We're not just brokers — we own a contracting company that builds and develops projects end-to-end: from land to key handover, with quality we put our name on.">لسنا وسيطاً فقط — نملك شركة مقاولات تنفّذ وتطوّر المشاريع بأيدينا: من الأرض إلى مفتاح التسليم، بجودة نضع اسمنا عليها.</p>
+      <a class="btn btn-gold" href="https://wa.me/966555607093?text=%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D9%82%D8%A7%D9%88%D9%84%D8%A7%D8%AA" data-ar="اطلب عرض مقاولات" data-en="Request a quote">اطلب عرض مقاولات</a>
+    </div>
+    <div class="contr-feats">
+      <div class="cfeat"><h4 data-ar="بناء تسليم مفتاح" data-en="Turnkey construction">بناء تسليم مفتاح</h4><p data-ar="تنفيذ كامل من الأساسات حتى التشطيب النهائي." data-en="Full execution from foundations to final finishing.">تنفيذ كامل من الأساسات حتى التشطيب النهائي.</p></div>
+      <div class="cfeat"><h4 data-ar="تشطيب داخلي وخارجي" data-en="Interior & exterior finishing">تشطيب داخلي وخارجي</h4><p data-ar="تشطيبات راقية بخامات مختارة وإشراف دقيق." data-en="Premium finishes with curated materials.">تشطيبات راقية بخامات مختارة وإشراف دقيق.</p></div>
+      <div class="cfeat"><h4 data-ar="ترميم وتطوير" data-en="Renovation & upgrading">ترميم وتطوير</h4><p data-ar="إعادة إحياء العقارات ورفع قيمتها السوقية." data-en="Reviving properties and raising their market value.">إعادة إحياء العقارات ورفع قيمتها السوقية.</p></div>
+      <div class="cfeat"><h4 data-ar="إشراف هندسي" data-en="Engineering supervision">إشراف هندسي</h4><p data-ar="إدارة مشاريع ومتابعة تنفيذ بمعايير صارمة." data-en="Project management with strict standards.">إدارة مشاريع ومتابعة تنفيذ بمعايير صارمة.</p></div>
+      <div class="cfeat"><h4 data-ar="من المطوّر مباشرة" data-en="Direct from developer">من المطوّر مباشرة</h4><p data-ar="وحدات نبنيها ونبيعها بدون وسيط — سعر أفضل وضمان أوثق." data-en="Units we build and sell directly — better price, stronger warranty.">وحدات نبنيها ونبيعها بدون وسيط — سعر أفضل وضمان أوثق.</p></div>
+      <div class="cfeat"><h4 data-ar="جودة وضمانات" data-en="Quality & warranties">جودة وضمانات</h4><p data-ar="التزام بالمواصفات والجداول الزمنية وضمانات موثّقة." data-en="Committed specs, timelines and documented warranties.">التزام بالمواصفات والجداول الزمنية وضمانات موثّقة.</p></div>
+    </div>
   </div>
 </div></section>
 
@@ -560,8 +596,7 @@ footer{background:var(--green);color:#bcd0c6;padding:60px 28px 36px;margin-top:3
 <footer><div class="foot">
   <div>
     <a href="#home" class="brand">
-      <img class="mk" src="assets/brand/bunood-icon.svg" alt="بنود العمران" width="46" height="46">
-      <span class="nm"><b>بنود العمران</b><span data-ar="العقارية" data-en="REAL ESTATE">العقارية</span></span>
+      <img src="assets/brand/bunood-logo-full.png" alt="بنود العمران العقارية" style="width:190px;display:block">
     </a>
     <p data-ar="نخبة العقارات في جدة، بوساطة عقارية مرخّصة وبمعايير عالمية." data-en="Premium properties in Jeddah with licensed, world-class brokerage.">نخبة العقارات في جدة، بوساطة عقارية مرخّصة وبمعايير عالمية.</p>
     <div class="social">
@@ -575,6 +610,7 @@ footer{background:var(--green);color:#bcd0c6;padding:60px 28px 36px;margin-top:3
     <a href="#estates" data-ar="العروض العقارية" data-en="Listings">العروض العقارية</a>
     <a href="#about" data-ar="عن الشركة" data-en="About">عن الشركة</a>
     <a href="#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a>
+    <a href="#contracting" data-ar="المقاولات والتطوير" data-en="Contracting">المقاولات والتطوير</a>
     <a href="#packages" data-ar="الباقات" data-en="Packages">الباقات</a>
     <a href="#location" data-ar="الموقع" data-en="Location">الموقع</a>
   </div>
