@@ -171,6 +171,28 @@ header.scr{background:rgba(247,243,234,.86);backdrop-filter:blur(16px);border-bo
 
 /* ---- Listings grid ---- */
 .est-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+/* ---- listing categories ---- */
+.cat-head{display:flex;align-items:center;gap:22px;margin:70px 0 30px}
+.cat-head:first-of-type{margin-top:10px}
+.cat-head h3{font-family:'Cairo',sans-serif;font-size:clamp(24px,3vw,34px);font-weight:800;color:var(--green);white-space:nowrap}
+.cat-head .cnt{font-family:'Cairo',sans-serif;font-size:15px;font-weight:700;color:var(--gold-d);background:rgba(176,138,74,.1);border:1px solid var(--line);border-radius:50px;padding:4px 16px}
+.cat-line{flex:1;height:2.5px;border-radius:2px;background:linear-gradient(90deg,var(--gold),rgba(205,167,103,.12))}
+/* ---- lands list ---- */
+.lands{display:flex;flex-direction:column;gap:14px}
+.lrow{display:grid;grid-template-columns:1.25fr .55fr 1.05fr auto;gap:18px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 26px;transition:.35s}
+.lrow:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 18px 44px rgba(12,53,39,.08)}
+.lrow .l1 b{font-family:'Cairo',sans-serif;font-size:18.5px;font-weight:800;color:var(--green);display:block}
+.lrow .l1 span{font-size:13.5px;color:var(--muted);font-weight:500}
+.lrow .l2{text-align:center}
+.lrow .l2 b{font-family:'Cairo',sans-serif;font-size:21px;font-weight:800;color:var(--ink)}
+.lrow .l2 span{font-size:12.5px;color:var(--muted);display:block}
+.lrow .l3 b{font-family:'Cairo',sans-serif;font-size:17.5px;font-weight:800;color:var(--gold-d);display:block}
+.lrow .l3 span{font-size:12.5px;color:var(--green-l);font-weight:700;display:block;margin-top:2px}
+.lrow .lwa{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--gold-l),var(--gold));color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:14px;border-radius:50px;padding:11px 22px;white-space:nowrap;transition:.3s}
+.lrow .lwa:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(176,138,74,.35)}
+.lrow .lwa svg{width:18px;height:18px;fill:#fff}
+.city-tag{display:inline-block;font-size:11.5px;font-weight:700;color:var(--green-l);background:rgba(44,122,95,.1);border-radius:50px;padding:2px 12px;margin-inline-start:8px;vertical-align:middle}
+@media(max-width:860px){.lrow{grid-template-columns:1fr 1fr;gap:12px}.lrow .l3{grid-column:1}.lrow .lwa{justify-self:end;grid-column:2;grid-row:3}}
 .estate{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
   transition:.45s var(--ease);display:flex;flex-direction:column}
 .estate:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:rgba(176,138,74,.4)}
@@ -393,7 +415,7 @@ footer{background:var(--green);color:#bcd0c6;padding:60px 28px 36px;margin-top:3
         <a href="https://wa.me/966555607093" class="btn btn-out" data-ar="تواصل عبر واتساب" data-en="WhatsApp us">تواصل عبر واتساب</a>
       </div>
       <div class="hero-meta">
-        <div class="m"><b data-count="15" data-suffix="+">0</b><span data-ar="عقار متاح الآن" data-en="Active listings">عقار متاح الآن</span></div>
+        <div class="m"><b data-count="29" data-suffix="+">0</b><span data-ar="عقار متاح الآن" data-en="Active listings">عقار متاح الآن</span></div>
         <div class="m"><b data-count="12" data-suffix="+">0</b><span data-ar="حي في جدة" data-en="Districts">حي في جدة</span></div>
         <div class="m"><b data-count="5" data-suffix="★">0</b><span data-ar="تقييم العملاء" data-en="Client rating">تقييم العملاء</span></div>
       </div>
@@ -403,7 +425,7 @@ footer{background:var(--green);color:#bcd0c6;padding:60px 28px 36px;margin-top:3
       <div class="frame"><img src="assets/hero.jpg" alt="فيلا فاخرة من بنود العمران في جدة" loading="eager"></div>
       <div class="tagcard">
         <span class="ic"><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <div><b data-ar="15+ عقار مميّز" data-en="15+ prime homes">15+ عقار مميّز</b><span data-ar="فلل · شقق · أراضٍ" data-en="Villas · Apartments · Land">فلل · شقق · أراضٍ</span></div>
+        <div><b data-ar="29+ عرض عقاري" data-en="29+ listings">29+ عرض عقاري</b><span data-ar="فلل · شقق · أراضٍ" data-en="Villas · Apartments · Land">فلل · شقق · أراضٍ</span></div>
       </div>
     </div>
   </div>
@@ -415,9 +437,14 @@ footer{background:var(--green);color:#bcd0c6;padding:60px 28px 36px;margin-top:3
     <div class="sec-head center reveal">
       <div class="eyebrow"><span data-ar="العروض العقارية" data-en="Featured Listings">العروض العقارية</span></div>
       <h2 data-ar="عقارات " data-en="Hand-picked ">عقارات <em data-ar="مختارة بعناية" data-en="properties">مختارة بعناية</em></h2>
-      <p data-ar="نخبة من العقارات المتاحة الآن في أرقى أحياء جدة. اضغط على أي عقار للتواصل المباشر." data-en="A selection of properties available now across Jeddah's finest districts.">نخبة من العقارات المتاحة الآن في أرقى أحياء جدة. اضغط على أي عقار للتواصل المباشر.</p>
+      <p data-ar="عروضنا مقسّمة بوضوح: فلل، شقق، وأراضٍ للبيع والتطوير والاستثمار — في جدة ومدن المملكة." data-en="Our listings, clearly organized: villas, apartments, and lands for sale, development and investment.">عروضنا مقسّمة بوضوح: فلل، شقق، وأراضٍ للبيع والتطوير والاستثمار — في جدة ومدن المملكة.</p>
     </div>
-    <div class="est-grid" id="grid"></div>
+    <div class="cat-head reveal" id="villas"><h3 data-ar="الفلل والرووف" data-en="Villas & Penthouses">الفلل والرووف</h3><span class="cnt" id="cntVillas"></span><span class="cat-line"></span></div>
+    <div class="est-grid" id="gridVillas"></div>
+    <div class="cat-head reveal" id="apts"><h3 data-ar="الشقق" data-en="Apartments">الشقق</h3><span class="cnt" id="cntApts"></span><span class="cat-line"></span></div>
+    <div class="est-grid" id="gridApts"></div>
+    <div class="cat-head reveal" id="lands"><h3 data-ar="الأراضي — بيع · تطوير · استثمار" data-en="Lands — Sale · Development · Investment">الأراضي — بيع · تطوير · استثمار</h3><span class="cnt" id="cntLands"></span><span class="cat-line"></span></div>
+    <div class="lands" id="landsList"></div>
     <div class="listings-cta reveal">
       <a href="https://wa.me/c/177743446733035" class="btn btn-gold" data-ar="تصفّح الكتالوج الكامل" data-en="Browse full catalog">تصفّح الكتالوج الكامل</a>
     </div>
@@ -426,7 +453,7 @@ footer{background:var(--green);color:#bcd0c6;padding:60px 28px 36px;margin-top:3
 
 <!-- Stats -->
 <section style="padding-block:0"><div class="wrap"><div class="stats reveal">
-  <div class="stat"><div class="v" data-count="15" data-suffix="+">0</div><div class="l" data-ar="عقار متاح" data-en="Active listings">عقار متاح</div></div>
+  <div class="stat"><div class="v" data-count="29" data-suffix="+">0</div><div class="l" data-ar="عقار متاح" data-en="Active listings">عقار متاح</div></div>
   <div class="stat"><div class="v" data-count="12" data-suffix="+">0</div><div class="l" data-ar="حي في جدة" data-en="Districts in Jeddah">حي في جدة</div></div>
   <div class="stat"><div class="v" data-count="5" data-suffix="★">0</div><div class="l" data-ar="تقييم العملاء" data-en="Client rating">تقييم العملاء</div></div>
   <div class="stat"><div class="v" data-count="100" data-suffix="%">0</div><div class="l" data-ar="وساطة مرخّصة" data-en="Licensed brokerage">وساطة مرخّصة</div></div>
@@ -639,9 +666,8 @@ footer{background:var(--green);color:#bcd0c6;padding:60px 28px 36px;margin-top:3
 <script>
 /* ============ Property data ============ */
 const ESTATES=[
-  {t:"فيلا فاخرة 11 غرفة",t_en:"Luxury 11-Room Villa",loc:"حي البساتين، جدة",loc_en:"Al Basatin, Jeddah",price:"4,500,000",badge:"حصري",badge_en:"Exclusive",beds:11,area:"660",photo:"assets/listings/11177732584.jpg",url:"https://haraj.com.sa/11177732584/",map:"https://maps.google.com/?q=21.680592970611,39.120376322717"},
-  {t:"أرض سكنية — شارعين",t_en:"Residential Land — 2 Streets",loc:"حي البوادي، جدة",loc_en:"Al Bawadi, Jeddah",price:"2,973,600",badge:"استثمار",badge_en:"Investment",land:true,area:"504",photo:"assets/listings/11182662418.jpg",url:"https://haraj.com.sa/11182662418/",map:"https://maps.google.com/?q=21.61325697141,39.157772431472"},
-  {t:"روف للتمليك",t_en:"Penthouse for Sale",loc:"حي النزهة، جدة",loc_en:"Al Nuzha, Jeddah",price:"835,000",badge:"جولة فيديو",badge_en:"Video Tour",beds:3,area:"219",vid:"assets/roof-nuzha.mp4",photo:"assets/roof-nuzha.jpg"},
+  {cat:"villa",t:"فيلا فاخرة 11 غرفة",t_en:"Luxury 11-Room Villa",loc:"حي البساتين، جدة",loc_en:"Al Basatin, Jeddah",price:"4,500,000",badge:"حصري",badge_en:"Exclusive",beds:11,area:"660",photo:"assets/listings/11177732584.jpg",url:"https://haraj.com.sa/11177732584/",map:"https://maps.google.com/?q=21.680592970611,39.120376322717"},
+  {cat:"villa",t:"روف للتمليك",t_en:"Penthouse for Sale",loc:"حي النزهة، جدة",loc_en:"Al Nuzha, Jeddah",price:"835,000",badge:"جولة فيديو",badge_en:"Video Tour",beds:3,area:"219",vid:"assets/roof-nuzha.mp4",photo:"assets/roof-nuzha.jpg"},
   {t:"شقة 4 غرف",t_en:"4-Room Apartment",loc:"حي السلامة، جدة",loc_en:"Al Salama, Jeddah",price:"620,000",badge:"للبيع",badge_en:"For Sale",beds:4,photo:"assets/listings/11186092499.jpg",url:"https://haraj.com.sa/11186092499/",map:"https://maps.google.com/?q=21.585287885206,39.157151188112"},
   {t:"شقق حي النعيم",t_en:"Al Naeem Apartments",loc:"حي النعيم، جدة",loc_en:"Al Naeem, Jeddah",price:"610,000",badge:"تقبل جميع البنوك",badge_en:"All Banks",beds:3,area:"115",photo:"assets/listings/11185638720.jpg",url:"https://haraj.com.sa/11185638720/",map:"https://maps.google.com/?q=21.625486888666,39.147277148691"},
   {t:"شقق تمليك — النهضة 2",t_en:"Al Nahda 2 Apartments",loc:"حي النهضة، جدة",loc_en:"Al Nahda, Jeddah",price:"570,000",badge:"للبيع",badge_en:"For Sale",beds:3,photo:"assets/listings/11181765856.jpg",url:"https://haraj.com.sa/11181765856/",map:"https://maps.google.com/?q=21.627337049367,39.130284973909"},
@@ -659,7 +685,8 @@ const bedSvg='<svg viewBox="0 0 24 24" fill="none"><path d="M3 18v-6a2 2 0 012-2
 const areaSvg='<svg viewBox="0 0 24 24" fill="none"><path d="M3 3h18v18H3zM3 9h18M9 3v18" stroke-linejoin="round"/></svg>';
 
 let lang='ar';
-const grid=document.getElementById('grid');
+const gridVillas=document.getElementById('gridVillas');
+const gridApts=document.getElementById('gridApts');
 const WA='https://wa.me/966555607093?text=';
 ESTATES.forEach((e,i)=>{
   const sp=[];
@@ -685,8 +712,44 @@ ESTATES.forEach((e,i)=>{
       <div class="specs">${specs}</div>
       ${(e.url||e.map)?`<div class="xlinks">${e.url?`<span class="xl" data-href="${e.url}" data-ar="إعلان حراج ↗" data-en="Haraj ad ↗">إعلان حراج ↗</span>`:''}${e.map?`<span class="xl" data-href="${e.map}" data-ar="الموقع على الخريطة" data-en="View on map">الموقع على الخريطة</span>`:''}</div>`:''}
     </div>`;
-  grid.appendChild(a);
+  (e.cat==='villa'?gridVillas:gridApts).appendChild(a);
 });
+
+/* ============ Lands (بيع · تطوير · استثمار) ============ */
+const LANDS=[
+  {d:"حي النزهة",c:"جدة",area:"750",st:"شارعين عرض 15م",sale:"4,600,000 ﷼"},
+  {d:"حي مشرفة",c:"جدة",area:"930",st:"شارع 10م",sale:"4,000,000 ﷼",inv:"إمكانية مشاركة وتطوير"},
+  {d:"حي الصفا",c:"جدة",area:"870",st:"شارع 15م",sale:"3,600,000 ﷼"},
+  {d:"حي البوادي",c:"جدة",area:"504",st:"شارعين عرض 24م",sale:"2,900,000 ﷼",url:"https://haraj.com.sa/11182662418/"},
+  {d:"حي الفيصلية",c:"جدة",area:"550",st:"حرف T على شارع 15م",sale:"2,800,000 ﷼"},
+  {d:"حي الفيصلية",c:"جدة",area:"385",st:"شارعين عرض 12م",sale:"1,450,000 ﷼"},
+  {d:"مخطط الرياض",c:"جدة",area:"625",st:"شارع 25م",sale:"900,000 ﷼"},
+  {d:"جوهرة العروس",c:"جدة",area:"620",st:"شارع 15م",sale:"700,000 ﷼"},
+  {d:"حي طيبة",c:"جدة",area:"450",st:"شارع 15م",sale:"320,000 ﷼"},
+  {d:"حي المروة",c:"جدة",area:"7,128",st:"3 شوارع بعرض 100م",inv:"استثمار: 1,000 ﷼ للمتر"},
+  {d:"حي الرغامة",c:"جدة",area:"900",st:"شارع 20م",inv:"استثمار: 300,000 ﷼ سنوياً"},
+  {d:"حي العزيزية",c:"المدينة المنورة",area:"1,448",st:"شارعين 30م و100م",inv:"استثمار — عرض سعر"},
+  {d:"حي النرجس",c:"الرياض",area:"1,050",st:"شارعين 30م و20م",inv:"مشاركة: 9,000,000 ﷼"},
+  {d:"حي الفرعاء",c:"أبها",area:"1,060",st:"شارعين عرض 12م",sale:"1,300,000 ﷼",inv:"أو استثمار 70,000 ﷼ سنوياً"},
+  {d:"جازان",c:"جازان",area:"35,000",st:"شارعين عرض 30م",sale:"15,000,000 ﷼",inv:"أو استثمار 1,000,000 ﷼ سنوياً"},
+];
+const waSvg='<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1112 20z"/></svg>';
+const landsList=document.getElementById('landsList');
+LANDS.forEach(l=>{
+  const row=document.createElement('div');
+  row.className='lrow reveal';
+  const msg=encodeURIComponent('مهتم بأرض '+l.d+' في '+l.c+' — المساحة '+l.area+'م²');
+  row.innerHTML=`
+    <div class="l1"><b>${l.d}<span class="city-tag">${l.c}</span></b><span>${l.st}</span></div>
+    <div class="l2"><b>${l.area}</b><span>م²</span></div>
+    <div class="l3">${l.sale?`<b>${l.sale}</b>`:''}${l.inv?`<span>${l.inv}</span>`:''}</div>
+    <a class="lwa" href="${WA+msg}" target="_blank" rel="noopener">${waSvg}<span data-ar="تواصل" data-en="Contact">تواصل</span></a>`;
+  landsList.appendChild(row);
+});
+document.getElementById('cntVillas').textContent=gridVillas.children.length;
+document.getElementById('cntApts').textContent=gridApts.children.length;
+document.getElementById('cntLands').textContent=LANDS.length;
+
 document.querySelectorAll('.xl').forEach(x=>x.addEventListener('click',ev=>{
   ev.preventDefault();ev.stopPropagation();window.open(x.dataset.href,'_blank');
 }));
